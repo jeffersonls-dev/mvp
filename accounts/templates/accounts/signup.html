@@ -8,15 +8,15 @@
     <body>
         <div class="container-fluid">
             <div class="row" style="margin: 10% 2%;place-content:center">
-                <div class="col-3">
-                    <h1>Login</h1>
+                <div class="col-10">
+                    <h1>Signup</h1>
                     <form method="POST">
                         <div style="margin-bottom: 10%;">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ form|crispy }}
                         </div>
                         <br>
-                        <button class="btn btn-info">logar</button>
+                        <button type="submit" class="btn btn-info">logar</button>
                     </form>
                 </div>
             </div>

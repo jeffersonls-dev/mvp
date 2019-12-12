@@ -4,13 +4,14 @@ from livro.models import Livro
 from livro.forms import LivroCreate
 from django.http import HttpResponse, Http404
 from bibliotecapp.settings import STATIC_URL, STATIC_ROOT, MEDIA_URL, MEDIA_ROOT
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
     shelf = Livro.objects.all()
     return render(request, 'livro/biblioteca.html', {'shelf': shelf})
 
+@login_required()
 def upload(request):
     upload = LivroCreate()
     if request.method == 'POST':
@@ -23,6 +24,7 @@ def upload(request):
     else:
         return render(request, 'livro/upload_form.html', {'upload_form':upload,'titulo':"Upload"})
 
+@login_required()
 def update_livro(request, livro_id):
     livro_id = int(livro_id)
     try:
@@ -38,6 +40,7 @@ def update_livro(request, livro_id):
         return redirect('index')
     return render(request, 'livro/upload_form.html', {'upload_form':livro_form,'titulo':"Update"})
 
+@login_required()
 def delete_livro(request, livro_id):
     livro_id = int(livro_id)
     try:
