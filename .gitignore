@@ -1,0 +1,8 @@
+*.pyc
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+livro/migrations/*
+media/*
