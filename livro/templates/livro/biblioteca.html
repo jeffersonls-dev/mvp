@@ -14,13 +14,21 @@
                     </div>
                     {% if user.is_authenticated %}
                     <div class="card-footer bg-transparent">
+                        {% if perms.livro.change_livro  %}
                         <a href="{% url 'livro:update-livro' livro_id=livro.pk %}" class="btn btn-warning">Edit</a>
+                        {% endif %}
+                        {% if perms.livro.delete_livro  %}
                         <a href="{% url 'livro:delete-livro' livro_id=livro.pk %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                        {% if perms.livro.view_livro  %}
                         <a href="{% url 'livro:download-livro' livro_id=livro.pk %}" class="btn btn-success">Download</a>
+                        {% endif %}
                     </div>
                     {% endif %}
                 </div>
             </div>
             {% endfor %}
 </div>
+
+{{ user.get_all_permissions }}
             {% endblock %}

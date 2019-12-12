@@ -17,9 +17,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'livro:index' %}">Livros</a>
                 </li>
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and perms.livro.change_livro %}
                 <li class="nav-item">
                     <a href="{% url 'livro:upload-livro' %}" class="nav-link">Upload de Livros</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated and perms.livro.change_livro %}
+                <li class="nav-item">
+                    <a href="{% url 'livro:catalogo' %}" class="nav-link">Catalogo</a>
                 </li>
                 {% endif %}
             </ul>
