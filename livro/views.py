@@ -1,11 +1,13 @@
 import os
+import csv
+import requests
 from django.shortcuts import render, redirect
 from livro.models import Livro
 from livro.forms import LivroCreate
 from django.http import HttpResponse, Http404
 from bibliotecapp.settings import STATIC_URL, STATIC_ROOT, MEDIA_URL, MEDIA_ROOT
 from django.contrib.auth.decorators import login_required, permission_required
-import csv
+
 
 # Create your views here.
 def index(request):
@@ -89,7 +91,19 @@ def livro(request, livro_id):
         livro = Livro.objects.get(id=livro_id)
     except Livro.DoesNotExist:
         return redirect('livro:index')
-    return render(request,'livro/livro.html', {'livro': livro})
+
+    descricao = livro.descricao
+
+    URL = 'https://translate.yandex.net/api/v1.5/tr.json/translate'
+    KEY = 'trnsl.1.1.20191212T131903Z.88805ef800f95e27.cbfc26202a49817df29b23f4eb069d3a92a22d9a'
+    LANG = 'pt-en'
+    req = '''{0}?key={1}&text={2}&lang={3}'''.format(URL, KEY, descricao, LANG)
+    resposta = requests.post(req)
+    if resposta.status_code != 200:
+        traducao = "Traducao Indisponível"
+    else:
+        traducao = resposta.json()['text'][0]
+    return render(request, 'livro/livro.html', {'livro':livro, 'traducao': traducao,'req':req})
 
 def error_404(request, exception):
     return render(request,'error.html', {'erro': '404'})
