@@ -12,19 +12,21 @@
         <hr>
         <p class="lead">{{ livro.descricao|linebreaksbr }}</p>
         <hr>
-        <a href="download/{{livro.id}}" class="btn btn-success" style="margin-botton: 10%!important">Download</a>
-        <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#traducao">
-                        View description in english
-            </button>
-        </div>
-        <div>
-                <button type="button" class="btn btn-primary" id="ajax_translater">
-                    View description in english - AJAX
+        <div class="row">
+            <a href="download/{{livro.id}}" class="btn btn-success" style="margin-botton: 10%!important">Download</a>
+            <div >
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#traducao">
+                            View description in english
                 </button>
             </div>
-            <p id='mostrar_traducao'></p>
-            <br>
+            <div >
+                    <button type="button" class="btn btn-primary" id="ajax_translater">
+                        View description in english - AJAX
+                    </button>
+                </div>
+                <p id='mostrar_traducao'></p>
+                <br>
+            </div>
         </div>
     </div>
 </div>
