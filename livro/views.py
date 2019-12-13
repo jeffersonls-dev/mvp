@@ -83,6 +83,14 @@ def catalogo(request):
 
     return response
 
+def livro(request, livro_id):
+    livro_id = int(livro_id)
+    try:
+        livro = Livro.objects.get(id=livro_id)
+    except Livro.DoesNotExist:
+        return redirect('livro:index')
+    return render(request,'livro/livro.html', {'livro': livro})
+
 def error_404(request, exception):
     return render(request,'error.html', {'erro': '404'})
 

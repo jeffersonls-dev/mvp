@@ -22,11 +22,11 @@
                     <a href="{% url 'livro:upload-livro' %}" class="nav-link">Upload de Livros</a>
                 </li>
                 {% endif %}
-                {% if user.is_authenticated and perms.livro.change_livro %}
+                <!-- {% if user.is_authenticated and perms.livro.change_livro %}
                 <li class="nav-item">
                     <a href="{% url 'livro:catalogo' %}" class="nav-link">Catalogo</a>
                 </li>
-                {% endif %}
+                {% endif %} -->
             </ul>
         </div>
         <div class="mx-auto order-0">

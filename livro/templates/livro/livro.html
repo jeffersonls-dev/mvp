@@ -1,0 +1,18 @@
+{% extends 'livro/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="container">
+        <h1 class="mt-4">{{ livro.nome }}</h1>
+        <p class="autor">
+            <h6>Por {{ livro.autor }}</h6>
+        </p>
+        <hr>
+        <img class="img-fluid rounded" src="{{ livro.figura.url }}" alt="">
+        <hr>
+        <p class="lead">{{ livro.descricao|linebreaksbr }}</p>
+        <hr>
+        <a href="download/{{livro.id}}" class="btn btn-success">Download</a>
+    </div>
+</div>
+{% endblock %}

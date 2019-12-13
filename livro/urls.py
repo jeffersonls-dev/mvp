@@ -11,6 +11,7 @@ urlpatterns = [
     path('update/<int:livro_id>', views.update_livro,name='update-livro'),
     path('delete/<int:livro_id>', views.delete_livro,name='delete-livro'),
     path('download/<int:livro_id>', views.download, name='download-livro'),
+    path('livro/<int:livro_id>',views.livro, name='livro'),
     path('catalogo/', views.catalogo, name='catalogo'),
 
     
